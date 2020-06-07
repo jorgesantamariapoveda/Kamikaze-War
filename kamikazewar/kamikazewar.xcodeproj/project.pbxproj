@@ -13,6 +13,10 @@
 		CFDA5CE8248CC90200CF6F6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFDA5CE6248CC90200CF6F6A /* LaunchScreen.storyboard */; };
 		CFDA5CF2248CCC0C00CF6F6A /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA5CF0248CCC0C00CF6F6A /* MainMenuViewController.swift */; };
 		CFDA5CF3248CCC0C00CF6F6A /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFDA5CF1248CCC0C00CF6F6A /* MainMenuViewController.xib */; };
+		CFDA5CF9248CE28400CF6F6A /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA5CF8248CE28400CF6F6A /* UserDefaultsManager.swift */; };
+		CFDA5CFB248CE52400CF6F6A /* UserDefaults+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA5CFA248CE52400CF6F6A /* UserDefaults+Ext.swift */; };
+		CFDA5D04248CF44000CF6F6A /* BattleSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA5D02248CF44000CF6F6A /* BattleSceneViewController.swift */; };
+		CFDA5D05248CF44000CF6F6A /* BattleSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFDA5D03248CF44000CF6F6A /* BattleSceneViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		CFDA5CE9248CC90200CF6F6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFDA5CF0248CCC0C00CF6F6A /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		CFDA5CF1248CCC0C00CF6F6A /* MainMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
+		CFDA5CF8248CE28400CF6F6A /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		CFDA5CFA248CE52400CF6F6A /* UserDefaults+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Ext.swift"; sourceTree = "<group>"; };
+		CFDA5D02248CF44000CF6F6A /* BattleSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleSceneViewController.swift; sourceTree = "<group>"; };
+		CFDA5D03248CF44000CF6F6A /* BattleSceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BattleSceneViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,8 @@
 		CFDA5CDA248CC90000CF6F6A /* kamikazewar */ = {
 			isa = PBXGroup;
 			children = (
+				CFDA5CF7248CE22F00CF6F6A /* UserDefaults */,
+				CFDA5CF6248CE20800CF6F6A /* BattleScene */,
 				CFDA5CEF248CCBF000CF6F6A /* MainMenu */,
 				CFDA5CDB248CC90000CF6F6A /* AppDelegate.swift */,
 				CFDA5CDD248CC90000CF6F6A /* SceneDelegate.swift */,
@@ -87,6 +97,40 @@
 			isa = PBXGroup;
 			children = (
 				CFDA5CF0248CCC0C00CF6F6A /* MainMenuViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CFDA5CF6248CE20800CF6F6A /* BattleScene */ = {
+			isa = PBXGroup;
+			children = (
+				CFDA5D07248CF44E00CF6F6A /* Controller */,
+				CFDA5D06248CF44700CF6F6A /* View */,
+			);
+			path = BattleScene;
+			sourceTree = "<group>";
+		};
+		CFDA5CF7248CE22F00CF6F6A /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				CFDA5CF8248CE28400CF6F6A /* UserDefaultsManager.swift */,
+				CFDA5CFA248CE52400CF6F6A /* UserDefaults+Ext.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		CFDA5D06248CF44700CF6F6A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CFDA5D03248CF44000CF6F6A /* BattleSceneViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CFDA5D07248CF44E00CF6F6A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CFDA5D02248CF44000CF6F6A /* BattleSceneViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -152,6 +196,7 @@
 				CFDA5CE8248CC90200CF6F6A /* LaunchScreen.storyboard in Resources */,
 				CFDA5CF3248CCC0C00CF6F6A /* MainMenuViewController.xib in Resources */,
 				CFDA5CE5248CC90200CF6F6A /* Assets.xcassets in Resources */,
+				CFDA5D05248CF44000CF6F6A /* BattleSceneViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +209,9 @@
 			files = (
 				CFDA5CF2248CCC0C00CF6F6A /* MainMenuViewController.swift in Sources */,
 				CFDA5CDC248CC90000CF6F6A /* AppDelegate.swift in Sources */,
+				CFDA5CF9248CE28400CF6F6A /* UserDefaultsManager.swift in Sources */,
+				CFDA5D04248CF44000CF6F6A /* BattleSceneViewController.swift in Sources */,
+				CFDA5CFB248CE52400CF6F6A /* UserDefaults+Ext.swift in Sources */,
 				CFDA5CDE248CC90000CF6F6A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

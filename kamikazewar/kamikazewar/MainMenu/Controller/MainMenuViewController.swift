@@ -10,6 +10,7 @@ import UIKit
 
 class MainMenuViewController: UIViewController {
 
+    // MARK: - Properties
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var startGameButton: UIButton!
 
@@ -18,17 +19,31 @@ class MainMenuViewController: UIViewController {
         super.viewDidLoad()
 
         setupUI()
+        setupData()
     }
 
-    // MARK: - Private functions
+    // MARK: - IBActions
+    @IBAction func startGameTapped(_ sender: UIButton) {
+        let battleSceneVC = BattleSceneViewController()
+        self.present(battleSceneVC, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Private functions
+extension MainMenuViewController {
+
     private func setupUI() {
         self.view.backgroundColor = .black
 
         startGameButton.layer.cornerRadius = 8.0
     }
 
-    // MARK: - IBActions
-    @IBAction func startGameTapped(_ sender: UIButton) {
+    private func setupData() {
+        updateScore()
+    }
+
+    private func updateScore() {
+        scoreLabel.text = UserDefaultsManager.gethightScoreToString()
     }
 
 }
