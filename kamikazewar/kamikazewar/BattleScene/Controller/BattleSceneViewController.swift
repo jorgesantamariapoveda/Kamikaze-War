@@ -16,7 +16,6 @@ final class BattleSceneViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var sceneView: ARSCNView!
 
-    private var score: Int = 0
     private let scoreViewModel: ScoreViewModel!
 
     init(scoreViewModel: ScoreViewModel) {
@@ -50,6 +49,7 @@ final class BattleSceneViewController: UIViewController {
         let alertController = UIAlertController(title: "¿Terminar partida?", message: nil, preferredStyle: .alert)
 
         let alertActionSi = UIAlertAction(title: "SI", style: .default) { (action) in
+            self.updateHightScore()
             self.dismiss(animated: true, completion: nil)
         }
 
@@ -87,11 +87,11 @@ extension BattleSceneViewController {
     }
 
     private func updateScore() {
-        score += 1
+        self.scoreViewModel.updateScore()
     }
 
     private func updateHightScore() {
-        UserDefaultsManager.updateHightScore(score: score)
+        self.scoreViewModel.updateHightScore()
     }
 
     private func runSessionSceneKit() {

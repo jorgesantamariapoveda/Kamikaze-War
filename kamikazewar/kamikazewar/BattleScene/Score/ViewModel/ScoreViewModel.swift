@@ -23,6 +23,10 @@ final class ScoreViewModel {
         self.score.updateScore()
     }
 
+    func updateHightScore() {
+        UserDefaultsManager.updateHightScore(score: score.getScore())
+    }
+
     func getScoreToString() -> String {
         return "Score: \(self.score.getScore())"
     }
