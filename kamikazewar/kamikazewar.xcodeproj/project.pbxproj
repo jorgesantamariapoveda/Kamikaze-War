@@ -19,6 +19,12 @@
 		CFDA5D05248CF44000CF6F6A /* BattleSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFDA5D03248CF44000CF6F6A /* BattleSceneViewController.xib */; };
 		CFDA5D0E248D15AB00CF6F6A /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA5D0D248D15AB00CF6F6A /* Score.swift */; };
 		CFDA5D10248D167200CF6F6A /* ScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA5D0F248D167200CF6F6A /* ScoreViewModel.swift */; };
+		CFE52EC7248D5BD40012DE0F /* Collisions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE52EC6248D5BD40012DE0F /* Collisions.swift */; };
+		CFE52ECC248D5CDB0012DE0F /* ship.scn in Resources */ = {isa = PBXBuildFile; fileRef = CFE52ECA248D5CDB0012DE0F /* ship.scn */; };
+		CFE52ECD248D5CDB0012DE0F /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = CFE52ECB248D5CDB0012DE0F /* texture.png */; };
+		CFE52EDE248D5DAB0012DE0F /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE52EDD248D5DAB0012DE0F /* Plane.swift */; };
+		CFE52EE0248D5DC50012DE0F /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE52EDF248D5DC50012DE0F /* Bullet.swift */; };
+		CFE52EE3248D5EBB0012DE0F /* Explossion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE52EE2248D5EBB0012DE0F /* Explossion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +42,14 @@
 		CFDA5D03248CF44000CF6F6A /* BattleSceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BattleSceneViewController.xib; sourceTree = "<group>"; };
 		CFDA5D0D248D15AB00CF6F6A /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		CFDA5D0F248D167200CF6F6A /* ScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewModel.swift; sourceTree = "<group>"; };
+		CFE52EC6248D5BD40012DE0F /* Collisions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collisions.swift; sourceTree = "<group>"; };
+		CFE52ECA248D5CDB0012DE0F /* ship.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = ship.scn; sourceTree = "<group>"; };
+		CFE52ECB248D5CDB0012DE0F /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture.png; sourceTree = "<group>"; };
+		CFE52EDB248D5D7B0012DE0F /* Explossion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explossion.scnp; sourceTree = "<group>"; };
+		CFE52EDC248D5D7B0012DE0F /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		CFE52EDD248D5DAB0012DE0F /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		CFE52EDF248D5DC50012DE0F /* Bullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
+		CFE52EE2248D5EBB0012DE0F /* Explossion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Explossion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +82,7 @@
 		CFDA5CDA248CC90000CF6F6A /* kamikazewar */ = {
 			isa = PBXGroup;
 			children = (
+				CFE52EC4248D5A7B0012DE0F /* Resources */,
 				CFDA5CF7248CE22F00CF6F6A /* UserDefaults */,
 				CFDA5CF6248CE20800CF6F6A /* BattleScene */,
 				CFDA5CEF248CCBF000CF6F6A /* MainMenu */,
@@ -165,6 +180,53 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		CFE52EC4248D5A7B0012DE0F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CFE52EC5248D5BBA0012DE0F /* Objects */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CFE52EC5248D5BBA0012DE0F /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				CFE52ECF248D5D100012DE0F /* Effects */,
+				CFE52ECE248D5CF00012DE0F /* Bullet */,
+				CFE52EC8248D5BEE0012DE0F /* Plane */,
+				CFE52EC6248D5BD40012DE0F /* Collisions.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		CFE52EC8248D5BEE0012DE0F /* Plane */ = {
+			isa = PBXGroup;
+			children = (
+				CFE52EDD248D5DAB0012DE0F /* Plane.swift */,
+				CFE52ECA248D5CDB0012DE0F /* ship.scn */,
+				CFE52ECB248D5CDB0012DE0F /* texture.png */,
+			);
+			path = Plane;
+			sourceTree = "<group>";
+		};
+		CFE52ECE248D5CF00012DE0F /* Bullet */ = {
+			isa = PBXGroup;
+			children = (
+				CFE52EDF248D5DC50012DE0F /* Bullet.swift */,
+			);
+			path = Bullet;
+			sourceTree = "<group>";
+		};
+		CFE52ECF248D5D100012DE0F /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				CFE52EDB248D5D7B0012DE0F /* Explossion.scnp */,
+				CFE52EE2248D5EBB0012DE0F /* Explossion.swift */,
+				CFE52EDC248D5D7B0012DE0F /* spark.png */,
+			);
+			path = Effects;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -223,8 +285,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFE52ECC248D5CDB0012DE0F /* ship.scn in Resources */,
 				CFDA5CE8248CC90200CF6F6A /* LaunchScreen.storyboard in Resources */,
 				CFDA5CF3248CCC0C00CF6F6A /* MainMenuViewController.xib in Resources */,
+				CFE52ECD248D5CDB0012DE0F /* texture.png in Resources */,
 				CFDA5CE5248CC90200CF6F6A /* Assets.xcassets in Resources */,
 				CFDA5D05248CF44000CF6F6A /* BattleSceneViewController.xib in Resources */,
 			);
@@ -239,12 +303,16 @@
 			files = (
 				CFDA5D0E248D15AB00CF6F6A /* Score.swift in Sources */,
 				CFDA5CF2248CCC0C00CF6F6A /* MainMenuViewController.swift in Sources */,
+				CFE52EDE248D5DAB0012DE0F /* Plane.swift in Sources */,
+				CFE52EE3248D5EBB0012DE0F /* Explossion.swift in Sources */,
 				CFDA5CDC248CC90000CF6F6A /* AppDelegate.swift in Sources */,
 				CFDA5CF9248CE28400CF6F6A /* UserDefaultsManager.swift in Sources */,
 				CFDA5D04248CF44000CF6F6A /* BattleSceneViewController.swift in Sources */,
 				CFDA5CFB248CE52400CF6F6A /* UserDefaults+Ext.swift in Sources */,
 				CFDA5CDE248CC90000CF6F6A /* SceneDelegate.swift in Sources */,
+				CFE52EC7248D5BD40012DE0F /* Collisions.swift in Sources */,
 				CFDA5D10248D167200CF6F6A /* ScoreViewModel.swift in Sources */,
+				CFE52EE0248D5DC50012DE0F /* Bullet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
