@@ -17,6 +17,8 @@
 		CFDA5CFB248CE52400CF6F6A /* UserDefaults+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA5CFA248CE52400CF6F6A /* UserDefaults+Ext.swift */; };
 		CFDA5D04248CF44000CF6F6A /* BattleSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA5D02248CF44000CF6F6A /* BattleSceneViewController.swift */; };
 		CFDA5D05248CF44000CF6F6A /* BattleSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFDA5D03248CF44000CF6F6A /* BattleSceneViewController.xib */; };
+		CFDA5D0E248D15AB00CF6F6A /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA5D0D248D15AB00CF6F6A /* Score.swift */; };
+		CFDA5D10248D167200CF6F6A /* ScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA5D0F248D167200CF6F6A /* ScoreViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,12 +28,14 @@
 		CFDA5CE4248CC90200CF6F6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFDA5CE7248CC90200CF6F6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CFDA5CE9248CC90200CF6F6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CFDA5CF0248CCC0C00CF6F6A /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		CFDA5CF0248CCC0C00CF6F6A /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		CFDA5CF1248CCC0C00CF6F6A /* MainMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
 		CFDA5CF8248CE28400CF6F6A /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		CFDA5CFA248CE52400CF6F6A /* UserDefaults+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Ext.swift"; sourceTree = "<group>"; };
 		CFDA5D02248CF44000CF6F6A /* BattleSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleSceneViewController.swift; sourceTree = "<group>"; };
 		CFDA5D03248CF44000CF6F6A /* BattleSceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BattleSceneViewController.xib; sourceTree = "<group>"; };
+		CFDA5D0D248D15AB00CF6F6A /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		CFDA5D0F248D167200CF6F6A /* ScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 		CFDA5CF6248CE20800CF6F6A /* BattleScene */ = {
 			isa = PBXGroup;
 			children = (
+				CFDA5D08248D10C200CF6F6A /* Score */,
 				CFDA5D07248CF44E00CF6F6A /* Controller */,
 				CFDA5D06248CF44700CF6F6A /* View */,
 			);
@@ -133,6 +138,31 @@
 				CFDA5D02248CF44000CF6F6A /* BattleSceneViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		CFDA5D08248D10C200CF6F6A /* Score */ = {
+			isa = PBXGroup;
+			children = (
+				CFDA5D0B248D156300CF6F6A /* Model */,
+				CFDA5D0C248D158E00CF6F6A /* ViewModel */,
+			);
+			path = Score;
+			sourceTree = "<group>";
+		};
+		CFDA5D0B248D156300CF6F6A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFDA5D0D248D15AB00CF6F6A /* Score.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CFDA5D0C248D158E00CF6F6A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CFDA5D0F248D167200CF6F6A /* ScoreViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,12 +237,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFDA5D0E248D15AB00CF6F6A /* Score.swift in Sources */,
 				CFDA5CF2248CCC0C00CF6F6A /* MainMenuViewController.swift in Sources */,
 				CFDA5CDC248CC90000CF6F6A /* AppDelegate.swift in Sources */,
 				CFDA5CF9248CE28400CF6F6A /* UserDefaultsManager.swift in Sources */,
 				CFDA5D04248CF44000CF6F6A /* BattleSceneViewController.swift in Sources */,
 				CFDA5CFB248CE52400CF6F6A /* UserDefaults+Ext.swift in Sources */,
 				CFDA5CDE248CC90000CF6F6A /* SceneDelegate.swift in Sources */,
+				CFDA5D10248D167200CF6F6A /* ScoreViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

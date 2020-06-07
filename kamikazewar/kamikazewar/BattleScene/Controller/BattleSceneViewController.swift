@@ -16,6 +16,19 @@ final class BattleSceneViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var sceneView: ARSCNView!
 
+    private var score: Int = 0
+    private let scoreViewModel: ScoreViewModel!
+
+    init(scoreViewModel: ScoreViewModel) {
+        self.scoreViewModel = scoreViewModel
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,9 +65,14 @@ final class BattleSceneViewController: UIViewController {
 
 }
 
+// MARK: - Private functions
 extension BattleSceneViewController {
 
     private func setupUI() {
+        configureSceneView()
+    }
+
+    private func configureSceneView() {
         runSessionSceneKit()
         //! revisar
         //sceneView.session.delegate = self
@@ -65,11 +83,15 @@ extension BattleSceneViewController {
     }
 
     private func setupData() {
-        updateScore()
+        scoreLabel.text = scoreViewModel.getScoreToString()
     }
 
     private func updateScore() {
+        score += 1
+    }
 
+    private func updateHightScore() {
+        UserDefaultsManager.updateHightScore(score: score)
     }
 
     private func runSessionSceneKit() {

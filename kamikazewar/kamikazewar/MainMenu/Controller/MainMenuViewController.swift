@@ -11,8 +11,8 @@ import UIKit
 class MainMenuViewController: UIViewController {
 
     // MARK: - Properties
-    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var startGameButton: UIButton!
+    @IBOutlet weak var scoreLabel: UILabel!
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -24,7 +24,7 @@ class MainMenuViewController: UIViewController {
 
     // MARK: - IBActions
     @IBAction func startGameTapped(_ sender: UIButton) {
-        let battleSceneVC = BattleSceneViewController()
+        let battleSceneVC = BattleSceneViewController(scoreViewModel: ScoreViewModel())
         self.present(battleSceneVC, animated: true, completion: nil)
     }
 }
@@ -34,16 +34,11 @@ extension MainMenuViewController {
 
     private func setupUI() {
         self.view.backgroundColor = .black
-
         startGameButton.layer.cornerRadius = 8.0
     }
 
     private func setupData() {
-        updateScore()
-    }
-
-    private func updateScore() {
-        scoreLabel.text = UserDefaultsManager.gethightScoreToString()
+        scoreLabel.text = UserDefaultsManager.getHightScoreToString()
     }
 
 }

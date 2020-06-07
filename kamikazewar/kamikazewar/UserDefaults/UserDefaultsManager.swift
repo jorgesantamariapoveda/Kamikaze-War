@@ -10,12 +10,20 @@ import Foundation
 
 final class UserDefaultsManager {
 
-    static func sethightScore(hightScore: Int) {
+    private static func setHightScore(hightScore: Int) {
         UserDefaults.standard.set(hightScore, forKey: UserDefaults.Keys.hightScore)
     }
 
-    static func gethightScoreToString() -> String {
-        let score = UserDefaults.standard.integer(forKey: UserDefaults.Keys.hightScore)
-        return "Hight score: \(score)"
+    private static func getHightScore() -> Int {
+        return UserDefaults.standard.integer(forKey: UserDefaults.Keys.hightScore)
+    }
+
+    static func updateHightScore(score: Int) {
+        let maxScore = max(score, getHightScore())
+        UserDefaultsManager.setHightScore(hightScore: maxScore)
+    }
+
+    static func getHightScoreToString() -> String {
+        return "Hight Score: \(getHightScore())"
     }
 }
