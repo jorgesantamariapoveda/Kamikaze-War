@@ -27,12 +27,27 @@ final class BattleSceneViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
 
-        sceneView.session.pause()
+        pauseSessionSceneKit()
     }
 
     // MARK: - IBActions
     @IBAction func exitButtonTapped(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        pauseSessionSceneKit()
+
+        let alertController = UIAlertController(title: "¿Terminar partida?", message: nil, preferredStyle: .alert)
+
+        let alertActionSi = UIAlertAction(title: "SI", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+
+        let alertActionNO = UIAlertAction(title: "NO", style: .cancel) { (action) in
+            self.runSessionSceneKit()
+        }
+
+        alertController.addAction(alertActionSi)
+        alertController.addAction(alertActionNO)
+
+        self.present(alertController, animated: true, completion: nil)
     }
 
 }
@@ -40,8 +55,7 @@ final class BattleSceneViewController: UIViewController {
 extension BattleSceneViewController {
 
     private func setupUI() {
-        let configuration = ARWorldTrackingConfiguration()
-        sceneView.session.run(configuration)
+        runSessionSceneKit()
         //! revisar
         //sceneView.session.delegate = self
 
@@ -56,5 +70,14 @@ extension BattleSceneViewController {
 
     private func updateScore() {
 
+    }
+
+    private func runSessionSceneKit() {
+        let configuration = ARWorldTrackingConfiguration()
+        sceneView.session.run(configuration)
+    }
+
+    private func pauseSessionSceneKit() {
+        sceneView.session.pause()
     }
 }
