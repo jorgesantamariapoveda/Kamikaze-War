@@ -26,9 +26,11 @@ final class BattleSceneViewController: UIViewController {
     @IBOutlet weak var finiteAmmunitionLabel: UILabel!
 
     private let scoreViewModel: ScoreViewModel!
+    private let ammoBox: AmmoBox!
 
     init(scoreViewModel: ScoreViewModel) {
         self.scoreViewModel = scoreViewModel
+        self.ammoBox = AmmoBox()
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -72,7 +74,7 @@ final class BattleSceneViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 
-    @IBAction func infiniteAmmunition(_ sender: UITapGestureRecognizer) {
+    @IBAction func infiniteAmmunitionTapped(_ sender: UITapGestureRecognizer) {
         print("Munición infinita")
         infiniteAmmunitionExtView.layer.borderColor = UIColor.systemPink.cgColor
         infiniteAmmunitionExtView.layer.borderWidth = 2
@@ -80,7 +82,7 @@ final class BattleSceneViewController: UIViewController {
         finiteAmmunitionExtView.layer.borderWidth = 0
     }
 
-    @IBAction func finiteAmmunition(_ sender: UITapGestureRecognizer) {
+    @IBAction func finiteAmmunitionTapped(_ sender: UITapGestureRecognizer) {
         print("FINITA")
         finiteAmmunitionExtView.layer.borderColor = UIColor.systemPink.cgColor
         finiteAmmunitionExtView.layer.borderWidth = 2
@@ -88,6 +90,9 @@ final class BattleSceneViewController: UIViewController {
         infiniteAmmunitionExtView.layer.borderWidth = 0
     }
 
+    @IBAction func sceneViewTapped(_ sender: UITapGestureRecognizer) {
+        print("Toco escena")
+    }
 }
 
 // MARK: - Private functions
@@ -110,13 +115,29 @@ extension BattleSceneViewController {
     }
 
     private func configureSceneView() {
+        appendAmmoBox()
         runSessionSceneKit()
+        sceneView.session.delegate = self
+
+//        let ammoBox = AmmoBox()
+
+
+
+//        if let camera = self.sceneView.session.currentFrame?.camera {
+//            let ammoBox = AmmoBox(camera)
+//            sceneView.scene.rootNode.addChildNode(ammoBox)
+//        }
+
         //! revisar
         //sceneView.session.delegate = self
 
         // tenemos que indicar que se nos avise cuando haya un contacto
         //! revisar
         //sceneView.scene.physicsWorld.contactDelegate = self
+    }
+
+    private func appendAmmoBox() {
+        sceneView.scene.rootNode.addChildNode(ammoBox)
     }
 
     private func setupData() {
@@ -139,4 +160,16 @@ extension BattleSceneViewController {
     private func pauseSessionSceneKit() {
         sceneView.session.pause()
     }
+}
+
+// MARK: - ARSessionDelegate
+extension BattleSceneViewController: ARSessionDelegate {
+
+    func session(_ session: ARSession, didUpdate frame: ARFrame) {
+        // con esto está hecho en bilboard
+//        if let cameraOrientation = session.currentFrame?.camera.transform {
+//            self.planes.forEach { $0.face(to: cameraOrientation) }
+//        }
+    }
+
 }

@@ -27,6 +27,9 @@
             <subviews>
                 <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8k-NY-TO7">
                     <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="Zc0-Nr-24y" appends="YES" id="nbL-az-aXv"/>
+                    </connections>
                 </arscnView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_mira" translatesAutoresizingMaskIntoConstraints="NO" id="kbw-Mv-AQB">
                     <rect key="frame" x="308.5" y="162.5" width="50" height="50"/>
@@ -174,12 +177,17 @@
         </view>
         <tapGestureRecognizer id="IS6-xH-cWK">
             <connections>
-                <action selector="infiniteAmmunition:" destination="-1" id="hCf-L4-Lw2"/>
+                <action selector="infiniteAmmunitionTapped:" destination="-1" id="hCf-L4-Lw2"/>
             </connections>
         </tapGestureRecognizer>
         <tapGestureRecognizer id="98E-Rc-bIf">
             <connections>
-                <action selector="finiteAmmunition:" destination="-1" id="xgx-iS-ElY"/>
+                <action selector="finiteAmmunitionTapped:" destination="-1" id="xgx-iS-ElY"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="Zc0-Nr-24y">
+            <connections>
+                <action selector="sceneViewTapped:" destination="-1" id="r6M-Wu-Ftp"/>
             </connections>
         </tapGestureRecognizer>
     </objects>
