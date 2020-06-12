@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CF5D5B032493D76A00844178 /* AmmoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5D5B022493D76900844178 /* AmmoBox.swift */; };
+		CF5D5B062493FC0800844178 /* LifeBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5D5B052493FC0800844178 /* LifeBar.swift */; };
 		CFDA5CDC248CC90000CF6F6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA5CDB248CC90000CF6F6A /* AppDelegate.swift */; };
 		CFDA5CDE248CC90000CF6F6A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA5CDD248CC90000CF6F6A /* SceneDelegate.swift */; };
 		CFDA5CE5248CC90200CF6F6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFDA5CE4248CC90200CF6F6A /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		CF5D5B022493D76900844178 /* AmmoBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmmoBox.swift; sourceTree = "<group>"; };
+		CF5D5B052493FC0800844178 /* LifeBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeBar.swift; sourceTree = "<group>"; };
 		CFDA5CD8248CC90000CF6F6A /* KamikazeWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KamikazeWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFDA5CDB248CC90000CF6F6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFDA5CDD248CC90000CF6F6A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +73,14 @@
 				CF5D5B022493D76900844178 /* AmmoBox.swift */,
 			);
 			path = AmmoBox;
+			sourceTree = "<group>";
+		};
+		CF5D5B042493FBEB00844178 /* LifeBar */ = {
+			isa = PBXGroup;
+			children = (
+				CF5D5B052493FC0800844178 /* LifeBar.swift */,
+			);
+			path = LifeBar;
 			sourceTree = "<group>";
 		};
 		CFDA5CCF248CC90000CF6F6A = {
@@ -204,6 +214,7 @@
 				CF5D5B012493D5E700844178 /* AmmoBox */,
 				CFE52ECF248D5D100012DE0F /* Effects */,
 				CFE52ECE248D5CF00012DE0F /* Bullet */,
+				CF5D5B042493FBEB00844178 /* LifeBar */,
 				CFE52EC8248D5BEE0012DE0F /* Plane */,
 				CFE52EC6248D5BD40012DE0F /* Collisions.swift */,
 			);
@@ -317,6 +328,7 @@
 				CFE52EDE248D5DAB0012DE0F /* Plane.swift in Sources */,
 				CFE52EE3248D5EBB0012DE0F /* Explossion.swift in Sources */,
 				CF5D5B032493D76A00844178 /* AmmoBox.swift in Sources */,
+				CF5D5B062493FC0800844178 /* LifeBar.swift in Sources */,
 				CFDA5CDC248CC90000CF6F6A /* AppDelegate.swift in Sources */,
 				CFDA5CF9248CE28400CF6F6A /* UserDefaultsManager.swift in Sources */,
 				CFDA5D04248CF44000CF6F6A /* BattleSceneViewController.swift in Sources */,

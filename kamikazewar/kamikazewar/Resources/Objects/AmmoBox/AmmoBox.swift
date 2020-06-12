@@ -13,7 +13,7 @@ final class AmmoBox: SCNNode {
     private let width: CGFloat = 0.05
     private let height: CGFloat = 0.05
     private let length: CGFloat = 0.05
-    private let decrementBoxFill: CGFloat = 0.01
+    private let decrementBoxFill: CGFloat = 0.001
 
     override init() {
         super.init()
@@ -21,7 +21,7 @@ final class AmmoBox: SCNNode {
         let box = SCNBox(width: width, height: height, length: length, chamferRadius: 0.0)
 
         let material = SCNMaterial()
-        material.diffuse.contents = UIImage(named: "madera.png")
+        material.diffuse.contents = UIImage(named: "cajaMadera.png")
         box.materials = [material]
 
         self.geometry = box

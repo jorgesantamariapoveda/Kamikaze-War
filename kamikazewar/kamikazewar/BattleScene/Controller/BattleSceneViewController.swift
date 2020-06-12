@@ -27,10 +27,12 @@ final class BattleSceneViewController: UIViewController {
 
     private let scoreViewModel: ScoreViewModel!
     private let ammoBox: AmmoBox!
+    private let plane: Plane!
 
     init(scoreViewModel: ScoreViewModel) {
         self.scoreViewModel = scoreViewModel
         self.ammoBox = AmmoBox()
+        self.plane = Plane()
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -44,8 +46,17 @@ final class BattleSceneViewController: UIViewController {
         super.viewDidLoad()
 
         setupUI()
+        configureSceneView()
         setupData()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        appendPlane()
+        appendAmmoBox()
+    }
+
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
@@ -91,7 +102,10 @@ final class BattleSceneViewController: UIViewController {
     }
 
     @IBAction func sceneViewTapped(_ sender: UITapGestureRecognizer) {
-        print("Toco escena")
+        guard let camera = self.sceneView.session.currentFrame?.camera else { return }
+
+        let bullet = Bullet(camera)
+        sceneView.scene.rootNode.addChildNode(bullet)
     }
 }
 
@@ -110,26 +124,13 @@ extension BattleSceneViewController {
         finiteAmmunitionExtView.layer.borderWidth = 0
 
         finiteAmmunitionLabel.text = "20"
-
-        configureSceneView()
     }
 
     private func configureSceneView() {
-        appendAmmoBox()
         runSessionSceneKit()
+        sceneView.showsStatistics = true
+        sceneView.autoenablesDefaultLighting = true
         sceneView.session.delegate = self
-
-//        let ammoBox = AmmoBox()
-
-
-
-//        if let camera = self.sceneView.session.currentFrame?.camera {
-//            let ammoBox = AmmoBox(camera)
-//            sceneView.scene.rootNode.addChildNode(ammoBox)
-//        }
-
-        //! revisar
-        //sceneView.session.delegate = self
 
         // tenemos que indicar que se nos avise cuando haya un contacto
         //! revisar
@@ -137,11 +138,30 @@ extension BattleSceneViewController {
     }
 
     private func appendAmmoBox() {
+        guard let ammoBox = ammoBox else { return }
         sceneView.scene.rootNode.addChildNode(ammoBox)
+    }
+
+    private func appendPlane() {
+        guard let plane = plane else { return }
+        plane.position = SCNVector3(0, 0, -2)
+        sceneView.scene.rootNode.addChildNode(plane)
+
+        appendLifeBarPlane()
+    }
+
+    private func appendLifeBarPlane() {
+        let bboxPlaneMax = plane.boundingBox.max
+        let bboxPlaneMin = plane.boundingBox.min
+        let lifeBar: LifeBar = LifeBar(width: bboxPlaneMax.x - bboxPlaneMin.x)
+        lifeBar.position = SCNVector3(0, bboxPlaneMax.y, 0)
+
+        plane.addChildNode(lifeBar)
     }
 
     private func setupData() {
         scoreLabel.text = scoreViewModel.getScoreToString()
+        finiteAmmunitionLabel.text = "¿?"
     }
 
     private func updateScore() {
@@ -154,6 +174,7 @@ extension BattleSceneViewController {
 
     private func runSessionSceneKit() {
         let configuration = ARWorldTrackingConfiguration()
+        sceneView.debugOptions = [ARSCNDebugOptions.showCameras, ARSCNDebugOptions.showCreases, ARSCNDebugOptions.showSkeletons]
         sceneView.session.run(configuration)
     }
 
@@ -167,9 +188,9 @@ extension BattleSceneViewController: ARSessionDelegate {
 
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         // con esto está hecho en bilboard
-//        if let cameraOrientation = session.currentFrame?.camera.transform {
-//            self.planes.forEach { $0.face(to: cameraOrientation) }
-//        }
+        if let cameraOrientation = session.currentFrame?.camera.transform {
+            self.plane.face(to: cameraOrientation)
+        }
     }
 
 }
