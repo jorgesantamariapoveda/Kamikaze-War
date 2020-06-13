@@ -120,7 +120,6 @@
 				CFDA5CDB248CC90000CF6F6A /* AppDelegate.swift */,
 				CFDA5CDD248CC90000CF6F6A /* SceneDelegate.swift */,
 				CFDA5CE4248CC90200CF6F6A /* Assets.xcassets */,
-				CF99D61A24953F3E00090B0B /* nice.wav */,
 				CFDA5CE6248CC90200CF6F6A /* LaunchScreen.storyboard */,
 				CFDA5CE9248CC90200CF6F6A /* Info.plist */,
 			);
@@ -216,6 +215,7 @@
 		CFE52EC4248D5A7B0012DE0F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CF99D61A24953F3E00090B0B /* nice.wav */,
 				CFE52EC5248D5BBA0012DE0F /* Objects */,
 			);
 			path = Resources;

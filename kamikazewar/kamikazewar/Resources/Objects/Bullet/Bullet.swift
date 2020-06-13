@@ -36,21 +36,20 @@ final class Bullet: SCNNode {
         let matrix = SCNMatrix4(camera.transform)
         // vector director (que también lleva la velocidad)
         let v = -velocity
-        print("Velocidad BULLET: \(velocity)")
         let direccion = SCNVector3(v * matrix.m31, v * matrix.m32, v * matrix.m33)
         // necesitamos un punto de origen
         let position = SCNVector3(matrix.m41, matrix.m42, matrix.m43)
         self.physicsBody?.applyForce(direccion, asImpulse: true)
 
-        if let sourceAudio = SCNAudioSource(named: "nice.wav") {
-            sourceAudio.volume = 5
-            sourceAudio.loops = true
-            sourceAudio.load()
-            let player = SCNAudioPlayer(source: sourceAudio)
-            self.addAudioPlayer(player)
-//            let playAudioSource = SCNAction.playAudio(sourceAudio, waitForCompletion: true)
-//            self.runAction(playAudioSource)
-        }
+//        if let sourceAudio = SCNAudioSource(named: "Resources/nice.wav") {
+//            sourceAudio.volume = 5
+//            sourceAudio.loops = true
+//            sourceAudio.load()
+//            let player = SCNAudioPlayer(source: sourceAudio)
+//            self.addAudioPlayer(player)
+////            let playAudioSource = SCNAction.playAudio(sourceAudio, waitForCompletion: true)
+////            self.runAction(playAudioSource)
+//        }
 
         // posición
         self.position = position

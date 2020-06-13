@@ -254,16 +254,18 @@ extension BattleSceneViewController: SCNPhysicsContactDelegate {
             // Explossion
             Explossion.show(with: node, in: sceneView.scene)
 
-            self.sceneView.scene.rootNode.childNodes.forEach {
-                if $0 is Plane {
-                    $0.removeFromParentNode()
-                }
+            guard let plane = node as? Plane else {
+                return
             }
 
-            DispatchQueue.main.async { [weak self] in
-                self?.updateScore()
-                self?.updateScoreUI()
-                self?.addNewPlane()
+            plane.updateLifeBar(damage: selectedAmmunition.damage)
+            if plane.getHealth() == 0 {
+                plane.removeFromParentNode()
+                DispatchQueue.main.async { [weak self] in
+                    self?.updateScore()
+                    self?.updateScoreUI()
+                    self?.addNewPlane()
+                }
             }
         } else if contact.nodeA.physicsBody?.categoryBitMask == Collisions.ammoBox.rawValue ||
             contact.nodeB.physicsBody?.categoryBitMask == Collisions.ammoBox.rawValue {

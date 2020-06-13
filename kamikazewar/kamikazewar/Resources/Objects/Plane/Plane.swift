@@ -10,23 +10,25 @@ import ARKit
 
 final class Plane: SCNNode {
 
-    let lifeBar: LifeBar!
+    var lifeBar: LifeBar!
 
     // MARK: - Initialization
     init(speed: Double) {
 
         // barra de vida
-        lifeBar = LifeBar(width: 0.5)
+        lifeBar = LifeBar()
         lifeBar.position = SCNVector3(0, 0.2, 0)
 
         super.init()
 
-        // geometría y material
+        //! ver si lo necesito o no
+        self.name = "plane"
+
         let plane = SCNScene(named: "ship.scn") ?? SCNScene()
         let node = plane.rootNode
 
         // añadir físicas
-        let shape = SCNPhysicsShape(node: node, options: nil)
+        let shape = SCNPhysicsShape(node: self, options: nil)
         self.physicsBody = SCNPhysicsBody(type: .static, shape: shape)
         self.physicsBody?.isAffectedByGravity = false
         // identificador de nuestro objeto para las colisiones
@@ -37,7 +39,7 @@ final class Plane: SCNNode {
         // posición
         let x = Double.random(in: -1.25...1.25)
         let y = Double.random(in: -0.75...0.75)
-        let z = -15.0
+        let z = -10.0
         self.position = SCNVector3(x, y, z)
 
         let moveToCamara = SCNAction.move(to: SCNVector3(0, 0, 0), duration: 10)
@@ -61,8 +63,12 @@ final class Plane: SCNNode {
         self.transform = SCNMatrix4(transform)
     }
 
-    func updateLifeBar() {
-        
+    func getHealth() -> Int {
+        return lifeBar.getHealth()
+    }
+
+    func updateLifeBar(damage: Int) {
+        lifeBar.update(damage: damage)
     }
 
 }
