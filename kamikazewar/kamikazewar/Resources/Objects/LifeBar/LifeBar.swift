@@ -13,20 +13,15 @@ final class LifeBar: SCNNode {
     init(width: Float) {
         super.init()
 
+        // geometría y material
         let geometry = SCNPlane(width: CGFloat(width), height: 0.02)
         let material = SCNMaterial()
         material.diffuse.contents = UIColor.green
         geometry.materials = [material]
-
         self.geometry = geometry
 
-        let geomTexto = SCNText(string: "20", extrusionDepth: 1)
-        geomTexto.materials.first?.diffuse.contents = UIColor.black
-        let nodeTexto = SCNNode()
-        nodeTexto.geometry = geomTexto
-        nodeTexto.position = SCNVector3(0, 0, 0)
-
-        self.addChildNode(nodeTexto)
+        // posición
+        self.position = SCNVector3(0, 0, 0)
     }
 
     required init?(coder: NSCoder) {

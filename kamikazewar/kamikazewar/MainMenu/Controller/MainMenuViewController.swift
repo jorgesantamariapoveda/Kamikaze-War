@@ -25,6 +25,7 @@ class MainMenuViewController: UIViewController {
     // MARK: - IBActions
     @IBAction func startGameTapped(_ sender: UIButton) {
         let battleSceneVC = BattleSceneViewController(scoreViewModel: ScoreViewModel())
+        battleSceneVC.delegate = self
         battleSceneVC.modalTransitionStyle = .crossDissolve
         self.present(battleSceneVC, animated: true, completion: nil)
     }
@@ -39,7 +40,19 @@ extension MainMenuViewController {
     }
 
     private func setupData() {
+        updateHighScore()
+    }
+
+    private func updateHighScore() {
         scoreLabel.text = UserDefaultsManager.getHightScoreToString()
+    }
+}
+
+// MARK: - MainMenuDelegate
+extension MainMenuViewController: MainMenuDelegate {
+
+    func finishGame() {
+        updateHighScore()
     }
 
 }

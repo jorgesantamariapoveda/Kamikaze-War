@@ -30,4 +30,9 @@ final class ScoreViewModel {
     func getScoreToString() -> String {
         return "Score: \(self.score.getScore())"
     }
+
+    func getPlaneSpeed() -> Double {
+        let score = self.score.getScore()
+        return min(3, Double(score) + 0.01)
+    }
 }
