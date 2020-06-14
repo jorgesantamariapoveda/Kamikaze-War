@@ -34,6 +34,7 @@ extension ScoreViewModel {
     }
 
     func getDurationAnimation() -> Int {
-        return max(10, 20 - self.score.getScore())
+        let durationAnimationByScore = Settings.initialDurationAnimationPlane - self.score.getScore()
+        return max(Settings.minDurationAnimationPlane, durationAnimationByScore)
     }
 }

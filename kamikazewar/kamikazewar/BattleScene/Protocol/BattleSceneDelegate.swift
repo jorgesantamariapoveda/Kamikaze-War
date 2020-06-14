@@ -1,5 +1,5 @@
 //
-//  MainMenuDelegate.swift
+//  BattleSceneDelegate.swift
 //  kamikazewar
 //
 //  Created by Jorge on 13/06/2020.
@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
-protocol MainMenuDelegate {
+         
+protocol BattleSceneDelegate {
     func finishGame()
 }

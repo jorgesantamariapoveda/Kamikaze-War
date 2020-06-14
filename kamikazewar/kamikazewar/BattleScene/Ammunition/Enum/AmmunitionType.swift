@@ -24,18 +24,18 @@ enum AmmunitionType {
     var velocity: Double {
         switch self {
         case .finite:
-            return 3
+            return Settings.finiteAmmoSpeed
         case .infinite:
-            return 9
+            return Settings.infiniteAmmoSpeed
         }
     }
 
     var damage: Int {
         switch self {
         case .finite:
-            return 2
+            return Settings.finiteAmmoDamage
         case .infinite:
-            return 1
+            return Settings.infiniteAmmoDamage
         }
     }
 

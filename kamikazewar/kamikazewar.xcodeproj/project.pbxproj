@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF1473D92496B65700912BD9 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1473D82496B65700912BD9 /* Settings.swift */; };
 		CF4419442496350700B0657F /* AmmunitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4419432496350700B0657F /* AmmunitionType.swift */; };
 		CF44194824963C4E00B0657F /* Ammunition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF44194724963C4E00B0657F /* Ammunition.swift */; };
 		CF44194B24963D4500B0657F /* AmmunitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF44194A24963D4500B0657F /* AmmunitionViewModel.swift */; };
@@ -18,7 +19,7 @@
 		CF5D5B032493D76A00844178 /* AmmoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5D5B022493D76900844178 /* AmmoBox.swift */; };
 		CF5D5B062493FC0800844178 /* LifeBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5D5B052493FC0800844178 /* LifeBar.swift */; };
 		CF84CF80249625FD007CA78C /* AmmoBoxFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF84CF7F249625FD007CA78C /* AmmoBoxFill.swift */; };
-		CF99D6172495380E00090B0B /* MainMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99D6162495380E00090B0B /* MainMenuDelegate.swift */; };
+		CF99D6172495380E00090B0B /* BattleSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99D6162495380E00090B0B /* BattleSceneDelegate.swift */; };
 		CFDA5CDC248CC90000CF6F6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA5CDB248CC90000CF6F6A /* AppDelegate.swift */; };
 		CFDA5CDE248CC90000CF6F6A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA5CDD248CC90000CF6F6A /* SceneDelegate.swift */; };
 		CFDA5CE5248CC90200CF6F6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFDA5CE4248CC90200CF6F6A /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF1473D82496B65700912BD9 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		CF4419432496350700B0657F /* AmmunitionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmmunitionType.swift; sourceTree = "<group>"; };
 		CF44194724963C4E00B0657F /* Ammunition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ammunition.swift; sourceTree = "<group>"; };
 		CF44194A24963D4500B0657F /* AmmunitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmmunitionViewModel.swift; sourceTree = "<group>"; };
@@ -50,7 +52,7 @@
 		CF5D5B022493D76900844178 /* AmmoBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmmoBox.swift; sourceTree = "<group>"; };
 		CF5D5B052493FC0800844178 /* LifeBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeBar.swift; sourceTree = "<group>"; };
 		CF84CF7F249625FD007CA78C /* AmmoBoxFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmmoBoxFill.swift; sourceTree = "<group>"; };
-		CF99D6162495380E00090B0B /* MainMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuDelegate.swift; sourceTree = "<group>"; };
+		CF99D6162495380E00090B0B /* BattleSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleSceneDelegate.swift; sourceTree = "<group>"; };
 		CFDA5CD8248CC90000CF6F6A /* KamikazeWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KamikazeWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFDA5CDB248CC90000CF6F6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFDA5CDD248CC90000CF6F6A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF1473D72496B64200912BD9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CF1473D82496B65700912BD9 /* Settings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		CF441942249634F500B0657F /* Enum */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,7 +151,7 @@
 		CF99D615249537E900090B0B /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				CF99D6162495380E00090B0B /* MainMenuDelegate.swift */,
+				CF99D6162495380E00090B0B /* BattleSceneDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -165,6 +175,7 @@
 		CFDA5CDA248CC90000CF6F6A /* kamikazewar */ = {
 			isa = PBXGroup;
 			children = (
+				CF1473D72496B64200912BD9 /* Settings */,
 				CFE52EC4248D5A7B0012DE0F /* Resources */,
 				CFDA5CF7248CE22F00CF6F6A /* UserDefaults */,
 				CFDA5CF6248CE20800CF6F6A /* BattleScene */,
@@ -198,7 +209,6 @@
 		CFDA5CF5248CCC5D00CF6F6A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CF99D615249537E900090B0B /* Protocol */,
 				CFDA5CF0248CCC0C00CF6F6A /* MainMenuViewController.swift */,
 			);
 			path = Controller;
@@ -207,6 +217,7 @@
 		CFDA5CF6248CE20800CF6F6A /* BattleScene */ = {
 			isa = PBXGroup;
 			children = (
+				CF99D615249537E900090B0B /* Protocol */,
 				CF44194524963C1300B0657F /* Ammunition */,
 				CFDA5D08248D10C200CF6F6A /* Score */,
 				CFDA5D07248CF44E00CF6F6A /* Controller */,
@@ -410,7 +421,8 @@
 				CFDA5CFB248CE52400CF6F6A /* UserDefaults+Ext.swift in Sources */,
 				CFDA5CDE248CC90000CF6F6A /* SceneDelegate.swift in Sources */,
 				CFE52EC7248D5BD40012DE0F /* Collisions.swift in Sources */,
-				CF99D6172495380E00090B0B /* MainMenuDelegate.swift in Sources */,
+				CF1473D92496B65700912BD9 /* Settings.swift in Sources */,
+				CF99D6172495380E00090B0B /* BattleSceneDelegate.swift in Sources */,
 				CFDA5D10248D167200CF6F6A /* ScoreViewModel.swift in Sources */,
 				CF44194B24963D4500B0657F /* AmmunitionViewModel.swift in Sources */,
 				CFE52EE0248D5DC50012DE0F /* Bullet.swift in Sources */,

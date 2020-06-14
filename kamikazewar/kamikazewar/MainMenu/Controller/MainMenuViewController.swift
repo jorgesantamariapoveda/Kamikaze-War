@@ -46,7 +46,7 @@ extension MainMenuViewController {
 }
 
 // MARK: - MainMenuDelegate
-extension MainMenuViewController: MainMenuDelegate {
+extension MainMenuViewController: BattleSceneDelegate {
 
     func finishGame() {
         getHighScore()

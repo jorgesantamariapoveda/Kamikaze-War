@@ -10,7 +10,7 @@ import ARKit
 
 final class Plane: SCNNode {
 
-    private var lifeBar: LifeBar = LifeBar(health: Int.random(in: 1...10))
+    private var lifeBar: LifeBar = LifeBar(health: Int.random(in: Settings.minLifeBar...Settings.maxLifeBar))
 
     // MARK: - Initialization
     init(durationAnimation: Int) {
@@ -31,9 +31,9 @@ final class Plane: SCNNode {
         self.physicsBody?.contactTestBitMask = Collisions.bullet.rawValue
 
         // posición
-        let x = Double.random(in: -1.25...1.25)
-        let y = Double.random(in: -0.75...0.75)
-        let z = -5.0
+        let x = Double.random(in: Settings.negativeXaxisValuePlane...Settings.positiveXaxisValuePlane)
+        let y = Double.random(in: Settings.negativeYaxisValuePlane...Settings.positiveYaxisValuePlane)
+        let z = Settings.negativeZaxisValuePlane
         self.position = SCNVector3(x, y, z)
 
 //        // mover hacia la cámara

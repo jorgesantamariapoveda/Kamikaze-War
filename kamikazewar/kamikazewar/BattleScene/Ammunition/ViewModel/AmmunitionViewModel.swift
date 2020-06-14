@@ -12,7 +12,7 @@ final class AmmunitionViewModel {
     // MARK: - Properties
     private let ammunition: Ammunition
     private var numBulletsFinite: Int
-    private let numBulletsFiniteByDefecte = 5
+    private let numBulletsFiniteByDefecte = Settings.numBulletsFinite
 
     // MARK: - Initialization
     init() {

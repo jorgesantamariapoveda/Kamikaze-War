@@ -26,7 +26,7 @@ final class BattleSceneViewController: UIViewController {
 
     private let configuration = ARWorldTrackingConfiguration()
 
-    internal var delegate: MainMenuDelegate?
+    internal var delegate: BattleSceneDelegate?
 
     // MARK: - Initialization
     init() {
@@ -202,7 +202,7 @@ extension BattleSceneViewController: ARSessionDelegate {
         if plane.position.z == 0 {
             sceneView.session.pause()
 
-            let alertController = UIAlertController(title: "👾Game over👾", message: nil, preferredStyle: .alert)
+            let alertController = UIAlertController(title: "🇯🇵 Game over 🇯🇵", message: nil, preferredStyle: .alert)
 
             let alertAction = UIAlertAction(title: "OK", style: .default) { (action) in
                 self.scoreViewModel.updateHightScore()

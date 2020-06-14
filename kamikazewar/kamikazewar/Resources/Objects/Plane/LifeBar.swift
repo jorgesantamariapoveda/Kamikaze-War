@@ -14,7 +14,6 @@ enum ColorLifeBar {
 final class LifeBar: SCNNode {
 
     // MARK: - Properties
-    //private var health: Int = Int.random(in: 3...8)
     private var health: Int
     private let fragmento: Double
 
@@ -37,7 +36,7 @@ final class LifeBar: SCNNode {
 extension LifeBar {
 
     private func setGeometryAndMaterialNode() {
-        self.geometry = SCNPlane(width: CGFloat(Double(health) * fragmento), height: 0.1)
+        self.geometry = SCNPlane(width: CGFloat(Double(health) * fragmento), height: 0.05)
         self.geometry?.materials.first?.diffuse.contents = UIColor.green
     }
 
@@ -48,9 +47,7 @@ extension LifeBar {
 
     func update(damage: Int) {
         health -= damage
-        print("Vida actual:\(health), daño producido:\(damage)")
         if health <= 0 {
-            print("MUERE")
             health = 0
         }
         setGeometryAndMaterialNode()
