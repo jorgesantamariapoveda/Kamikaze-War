@@ -10,20 +10,19 @@ import ARKit
 
 final class Plane: SCNNode {
 
-    private var lifeBar: LifeBar = LifeBar()
+    private var lifeBar: LifeBar = LifeBar(health: Int.random(in: 1...10))
 
     // MARK: - Initialization
-    init(durationAnimation: Int = 15) {
+    init(durationAnimation: Int) {
         super.init()
 
-        //! ver si lo necesito o no
         self.name = "plane"
-
+        
         let plane = SCNScene(named: "ship.scn") ?? SCNScene()
         let node = plane.rootNode
 
         // añadir físicas
-        let shape = SCNPhysicsShape(node: self, options: nil)
+        let shape = SCNPhysicsShape(node: node, options: nil)
         self.physicsBody = SCNPhysicsBody(type: .static, shape: shape)
         self.physicsBody?.isAffectedByGravity = false
         // identificador de nuestro objeto para las colisiones
@@ -37,16 +36,16 @@ final class Plane: SCNNode {
         let z = -5.0
         self.position = SCNVector3(x, y, z)
 
-        // mover hacia la cámara
-        let moveToCamera = SCNAction.move(to: SCNVector3(0, 0, 0), duration: Double(durationAnimation))
-        self.runAction(moveToCamera)
-
+//        // mover hacia la cámara
+//        let moveToCamera = SCNAction.move(to: SCNVector3(0, 0, 0), duration: Double(durationAnimation))
+//        self.runAction(moveToCamera)
+//
         self.addChildNode(node)
 
         // barra de vida
         lifeBar.position = SCNVector3(0, 0.2, 0)
-        //node.addChildNode(lifeBar)
-        self.addChildNode(lifeBar)
+        node.addChildNode(lifeBar)
+        //self.addChildNode(lifeBar)
     }
     
     required init?(coder aDecoder: NSCoder) {

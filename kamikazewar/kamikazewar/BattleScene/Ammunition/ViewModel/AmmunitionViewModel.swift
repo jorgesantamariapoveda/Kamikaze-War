@@ -37,12 +37,21 @@ extension AmmunitionViewModel {
         }
     }
 
+    func getBorderColorTo(type: AmmunitionType) -> CGColor {
+        if type == ammunition.getAmmunitionType() {
+            return type.color.cgColor
+        } else {
+            return UIColor.black.cgColor
+        }
+    }
+
     func updateNumBulletsAmmunition() {
         let type = ammunition.getAmmunitionType()
         switch type {
         case .finite:
-            if numBulletsFinite > 0 {
-                numBulletsFinite -= 1
+            numBulletsFinite -= 1
+            if numBulletsFinite == 0 {
+                ammunition.setAmmunitionType(type: .infinite)
             }
             break
         case .infinite:
@@ -51,14 +60,7 @@ extension AmmunitionViewModel {
     }
 
     func resetNumBulletsAmmunition() {
-        let type = ammunition.getAmmunitionType()
-        switch type {
-        case .finite:
-            numBulletsFinite = numBulletsFiniteByDefecte
-            break
-        case .infinite:
-            break
-        }
+        numBulletsFinite = numBulletsFiniteByDefecte
     }
 
     func getNumBulletsAmmunition() -> String {
@@ -75,6 +77,10 @@ extension AmmunitionViewModel {
 
     func getBulletDamage() -> Int {
         return ammunition.getAmmunitionType().damage
+    }
+
+    func getBulletSoundName() -> String {
+        return ammunition.getAmmunitionType().soundName
     }
 
 }

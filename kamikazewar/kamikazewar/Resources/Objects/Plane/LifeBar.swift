@@ -8,18 +8,23 @@
 
 import ARKit
 
+enum ColorLifeBar {
+}
+
 final class LifeBar: SCNNode {
 
     // MARK: - Properties
-    private var health: Int = Int.random(in: 3...8)
+    //private var health: Int = Int.random(in: 3...8)
+    private var health: Int
+    private let fragmento: Double
 
     // MARK: - Initialization
-    init(width: Double = 3) {
+    init(health: Int) {
+        self.health = health
+        self.fragmento = 2 / Double(health)
         super.init()
 
-        //! ver si me hace falta o no
         self.name = "lifeBar"
-
         setGeometryAndMaterialNode()
     }
 
@@ -32,7 +37,7 @@ final class LifeBar: SCNNode {
 extension LifeBar {
 
     private func setGeometryAndMaterialNode() {
-        self.geometry = SCNPlane(width: CGFloat(health), height: 0.01)
+        self.geometry = SCNPlane(width: CGFloat(Double(health) * fragmento), height: 0.1)
         self.geometry?.materials.first?.diffuse.contents = UIColor.green
     }
 

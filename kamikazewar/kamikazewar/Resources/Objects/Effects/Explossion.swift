@@ -8,10 +8,16 @@
 
 import ARKit
 
+enum ExplossionType: String {
+    case Hit = "Explossion"
+    case Destroy = "ExplossionDestroy"
+    case AmmoBox = "ExplossionAmmoBox"
+}
+
 struct Explossion {
 
-    static func show(with node: SCNNode, in scene: SCNScene) {
-        guard let explossion = SCNParticleSystem(named: "Resources/Objects/Effects/Explossion", inDirectory: nil) else {
+    static func show(with node: SCNNode, in scene: SCNScene, typeExplossion type: ExplossionType) {
+        guard let explossion = SCNParticleSystem(named: type.rawValue, inDirectory: nil) else {
             return
         }
 

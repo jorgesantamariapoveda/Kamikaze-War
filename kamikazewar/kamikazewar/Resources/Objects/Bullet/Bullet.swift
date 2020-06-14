@@ -11,7 +11,7 @@ import ARKit
 final class Bullet: SCNNode {
     
     // MARK: - Initialization
-    init(_ camera: ARCamera, color: CGColor, velocity: Double) {
+    init(_ camera: ARCamera, color: CGColor, velocity: Double, soundName: String) {
         super.init()
 
         // geometría y material
@@ -40,12 +40,11 @@ final class Bullet: SCNNode {
         self.physicsBody?.applyForce(direccion, asImpulse: true)
         self.position = position
 
-        //! no he conseguido que funcionase
-//        if let sourceAudio = SCNAudioSource(fileNamed: "nice.wav") {
-//            sourceAudio.load()
-//            let playAudioSource = SCNAction.playAudio(sourceAudio, waitForCompletion: false)
-//            self.runAction(playAudioSource)
-//        }
+        if let sourceAudio = SCNAudioSource(fileNamed: soundName) {
+            sourceAudio.load()
+            let playAudioSource = SCNAction.playAudio(sourceAudio, waitForCompletion: false)
+            self.runAction(playAudioSource)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

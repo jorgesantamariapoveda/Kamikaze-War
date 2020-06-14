@@ -24,9 +24,9 @@ enum AmmunitionType {
     var velocity: Double {
         switch self {
         case .finite:
-            return 4
+            return 3
         case .infinite:
-            return 8
+            return 9
         }
     }
 
@@ -36,6 +36,15 @@ enum AmmunitionType {
             return 2
         case .infinite:
             return 1
+        }
+    }
+
+    var soundName: String {
+        switch self {
+        case .finite:
+            return "laserX2.mp3"
+        case .infinite:
+            return "laserX1.mp3"
         }
     }
 }

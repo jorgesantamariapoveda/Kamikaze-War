@@ -34,6 +34,6 @@ extension ScoreViewModel {
     }
 
     func getDurationAnimation() -> Int {
-        return min(10, 15 - self.score.getScore())
+        return max(10, 20 - self.score.getScore())
     }
 }

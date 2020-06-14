@@ -10,6 +10,11 @@
 		CF4419442496350700B0657F /* AmmunitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4419432496350700B0657F /* AmmunitionType.swift */; };
 		CF44194824963C4E00B0657F /* Ammunition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF44194724963C4E00B0657F /* Ammunition.swift */; };
 		CF44194B24963D4500B0657F /* AmmunitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF44194A24963D4500B0657F /* AmmunitionViewModel.swift */; };
+		CF44194C249667FD00B0657F /* Explossion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = CFE52EDB248D5D7B0012DE0F /* Explossion.scnp */; };
+		CF44194F2496693C00B0657F /* ExplossionDestroy.scnp in Resources */ = {isa = PBXBuildFile; fileRef = CF44194E2496693C00B0657F /* ExplossionDestroy.scnp */; };
+		CF44195124966B0300B0657F /* ExplossionAmmoBox.scnp in Resources */ = {isa = PBXBuildFile; fileRef = CF44195024966B0300B0657F /* ExplossionAmmoBox.scnp */; };
+		CF44195324966DB000B0657F /* laserX1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF44195224966DB000B0657F /* laserX1.mp3 */; };
+		CF441958249672FC00B0657F /* laserX2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF441957249672FC00B0657F /* laserX2.mp3 */; };
 		CF5D5B032493D76A00844178 /* AmmoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5D5B022493D76900844178 /* AmmoBox.swift */; };
 		CF5D5B062493FC0800844178 /* LifeBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5D5B052493FC0800844178 /* LifeBar.swift */; };
 		CF84CF80249625FD007CA78C /* AmmoBoxFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF84CF7F249625FD007CA78C /* AmmoBoxFill.swift */; };
@@ -38,11 +43,14 @@
 		CF4419432496350700B0657F /* AmmunitionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmmunitionType.swift; sourceTree = "<group>"; };
 		CF44194724963C4E00B0657F /* Ammunition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ammunition.swift; sourceTree = "<group>"; };
 		CF44194A24963D4500B0657F /* AmmunitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmmunitionViewModel.swift; sourceTree = "<group>"; };
+		CF44194E2496693C00B0657F /* ExplossionDestroy.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = ExplossionDestroy.scnp; sourceTree = "<group>"; };
+		CF44195024966B0300B0657F /* ExplossionAmmoBox.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = ExplossionAmmoBox.scnp; sourceTree = "<group>"; };
+		CF44195224966DB000B0657F /* laserX1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = laserX1.mp3; sourceTree = "<group>"; };
+		CF441957249672FC00B0657F /* laserX2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = laserX2.mp3; sourceTree = "<group>"; };
 		CF5D5B022493D76900844178 /* AmmoBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmmoBox.swift; sourceTree = "<group>"; };
 		CF5D5B052493FC0800844178 /* LifeBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeBar.swift; sourceTree = "<group>"; };
 		CF84CF7F249625FD007CA78C /* AmmoBoxFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmmoBoxFill.swift; sourceTree = "<group>"; };
 		CF99D6162495380E00090B0B /* MainMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuDelegate.swift; sourceTree = "<group>"; };
-		CF99D61A24953F3E00090B0B /* nice.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = nice.wav; sourceTree = "<group>"; };
 		CFDA5CD8248CC90000CF6F6A /* KamikazeWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KamikazeWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFDA5CDB248CC90000CF6F6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFDA5CDD248CC90000CF6F6A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +118,15 @@
 				CF44194A24963D4500B0657F /* AmmunitionViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CF44195424966F4100B0657F /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				CF44195224966DB000B0657F /* laserX1.mp3 */,
+				CF441957249672FC00B0657F /* laserX2.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		CF5D5B012493D5E700844178 /* AmmoBox */ = {
@@ -251,7 +268,7 @@
 		CFE52EC4248D5A7B0012DE0F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CF99D61A24953F3E00090B0B /* nice.wav */,
+				CF44195424966F4100B0657F /* Sounds */,
 				CFE52EC5248D5BBA0012DE0F /* Objects */,
 			);
 			path = Resources;
@@ -291,6 +308,8 @@
 		CFE52ECF248D5D100012DE0F /* Effects */ = {
 			isa = PBXGroup;
 			children = (
+				CF44195024966B0300B0657F /* ExplossionAmmoBox.scnp */,
+				CF44194E2496693C00B0657F /* ExplossionDestroy.scnp */,
 				CFE52EDB248D5D7B0012DE0F /* Explossion.scnp */,
 				CFE52EE2248D5EBB0012DE0F /* Explossion.swift */,
 				CFE52EDC248D5D7B0012DE0F /* spark.png */,
@@ -356,8 +375,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF44194F2496693C00B0657F /* ExplossionDestroy.scnp in Resources */,
 				CFE52ECC248D5CDB0012DE0F /* ship.scn in Resources */,
+				CF44194C249667FD00B0657F /* Explossion.scnp in Resources */,
+				CF44195324966DB000B0657F /* laserX1.mp3 in Resources */,
 				CFDA5CE8248CC90200CF6F6A /* LaunchScreen.storyboard in Resources */,
+				CF441958249672FC00B0657F /* laserX2.mp3 in Resources */,
+				CF44195124966B0300B0657F /* ExplossionAmmoBox.scnp in Resources */,
 				CFDA5CF3248CCC0C00CF6F6A /* MainMenuViewController.xib in Resources */,
 				CFE52ECD248D5CDB0012DE0F /* texture.png in Resources */,
 				CFDA5CE5248CC90200CF6F6A /* Assets.xcassets in Resources */,

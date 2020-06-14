@@ -119,8 +119,8 @@ extension BattleSceneViewController {
 
     private func updateSelectedAmmunitionUI() {
         finiteAmmunitionLabel.text = ammunitionViewModel.getNumBulletsAmmunition()
-        finiteAmmunitionExtView.layer.borderColor = AmmunitionType.finite.color.cgColor
-        infiniteAmmunitionExtView.layer.borderColor = AmmunitionType.finite.color.cgColor
+        finiteAmmunitionExtView.layer.borderColor = ammunitionViewModel.getBorderColorTo(type: .finite)
+        infiniteAmmunitionExtView.layer.borderColor = ammunitionViewModel.getBorderColorTo(type: .infinite)
     }
 
     private func updateScoreUI() {
@@ -137,10 +137,9 @@ extension BattleSceneViewController {
         updateSelectedAmmunitionUI()
     }
 
-    private func resetAmmunitionType() {
+    private func resetAmmunitionTypeFinite() {
         ammunitionViewModel.resetNumBulletsAmmunition()
-        ammunitionViewModel.setAmmunitionType(type: .infinite)
-        updateSelectedAmmunitionUI()
+        ammunitionViewModel.setAmmunitionType(type: .finite)
     }
 }
 
@@ -162,7 +161,11 @@ extension BattleSceneViewController {
     }
 
     private func addPlaneToScene() {
-        let plane = Plane(durationAnimation: scoreViewModel.getDurationAnimation())
+        let durationAnimation = scoreViewModel.getDurationAnimation()
+        let plane = Plane(durationAnimation: durationAnimation)
+        let moveToCamera = SCNAction.move(to: SCNVector3(0, 0, 0), duration: TimeInterval(durationAnimation))
+        plane.runAction(moveToCamera)
+
         sceneView.scene.rootNode.addChildNode(plane)
     }
 
@@ -170,11 +173,11 @@ extension BattleSceneViewController {
         guard let camera = self.sceneView.session.currentFrame?.camera else {
             return
         }
-
         let bullet = Bullet(
                     camera,
                     color: ammunitionViewModel.getBulletColor(),
-                    velocity: ammunitionViewModel.getBulletVelocity())
+                    velocity: ammunitionViewModel.getBulletVelocity(),
+                    soundName: ammunitionViewModel.getBulletSoundName())
         sceneView.scene.rootNode.addChildNode(bullet)
     }
 }
@@ -199,9 +202,10 @@ extension BattleSceneViewController: ARSessionDelegate {
         if plane.position.z == 0 {
             sceneView.session.pause()
 
-            let alertController = UIAlertController(title: "👾GAME OVER👾", message: nil, preferredStyle: .alert)
+            let alertController = UIAlertController(title: "👾Game over👾", message: nil, preferredStyle: .alert)
 
             let alertAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                self.scoreViewModel.updateHightScore()
                 self.delegate?.finishGame()
                 self.dismiss(animated: true, completion: nil)
             }
@@ -228,8 +232,6 @@ extension BattleSceneViewController: SCNPhysicsContactDelegate {
             if contact.nodeA is Plane { node = contact.nodeA }
             if contact.nodeB is Plane { node = contact.nodeB }
 
-            Explossion.show(with: node, in: sceneView.scene)
-
             guard let plane = node as? Plane else {
                 return
             }
@@ -237,12 +239,16 @@ extension BattleSceneViewController: SCNPhysicsContactDelegate {
             plane.setDamage(damage: ammunitionViewModel.getBulletDamage())
 
             if plane.getHealth() == 0 {
+                Explossion.show(with: node, in: sceneView.scene, typeExplossion: .Destroy)
+
                 plane.removeFromParentNode()
                 addPlaneToScene()
 
                 DispatchQueue.main.async { [weak self] in
                     self?.updateScoreUI()
                 }
+            } else {
+                Explossion.show(with: node, in: sceneView.scene, typeExplossion: .Hit)
             }
         } else if contact.nodeA.physicsBody?.categoryBitMask == Collisions.ammoBox.rawValue ||
             contact.nodeB.physicsBody?.categoryBitMask == Collisions.ammoBox.rawValue {
@@ -251,11 +257,10 @@ extension BattleSceneViewController: SCNPhysicsContactDelegate {
             if contact.nodeA is AmmoBox { node = contact.nodeA }
             if contact.nodeB is AmmoBox { node = contact.nodeB }
 
-            Explossion.show(with: node, in: sceneView.scene)
-
-            resetAmmunitionType()
+            Explossion.show(with: node, in: sceneView.scene, typeExplossion: .AmmoBox)
 
             DispatchQueue.main.async { [weak self] in
+                self?.resetAmmunitionTypeFinite()
                 self?.updateSelectedAmmunitionUI()
             }
         }
