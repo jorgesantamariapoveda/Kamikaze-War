@@ -19,12 +19,11 @@ class MainMenuViewController: UIViewController {
         super.viewDidLoad()
 
         setupUI()
-        setupData()
     }
 
     // MARK: - IBActions
     @IBAction func startGameTapped(_ sender: UIButton) {
-        let battleSceneVC = BattleSceneViewController(scoreViewModel: ScoreViewModel())
+        let battleSceneVC = BattleSceneViewController()
         battleSceneVC.delegate = self
         battleSceneVC.modalTransitionStyle = .crossDissolve
         self.present(battleSceneVC, animated: true, completion: nil)
@@ -37,13 +36,11 @@ extension MainMenuViewController {
     private func setupUI() {
         self.view.backgroundColor = .black
         startGameButton.layer.cornerRadius = 8.0
+
+        getHighScore()
     }
 
-    private func setupData() {
-        updateHighScore()
-    }
-
-    private func updateHighScore() {
+    private func getHighScore() {
         scoreLabel.text = UserDefaultsManager.getHightScoreToString()
     }
 }
@@ -52,7 +49,7 @@ extension MainMenuViewController {
 extension MainMenuViewController: MainMenuDelegate {
 
     func finishGame() {
-        updateHighScore()
+        getHighScore()
     }
 
 }

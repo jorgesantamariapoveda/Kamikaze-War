@@ -10,15 +10,10 @@ import ARKit
 
 final class Plane: SCNNode {
 
-    var lifeBar: LifeBar!
+    private var lifeBar: LifeBar = LifeBar()
 
     // MARK: - Initialization
-    init(speed: Double) {
-
-        // barra de vida
-        lifeBar = LifeBar()
-        lifeBar.position = SCNVector3(0, 0.2, 0)
-
+    init(durationAnimation: Int = 15) {
         super.init()
 
         //! ver si lo necesito o no
@@ -39,22 +34,29 @@ final class Plane: SCNNode {
         // posición
         let x = Double.random(in: -1.25...1.25)
         let y = Double.random(in: -0.75...0.75)
-        let z = -10.0
+        let z = -5.0
         self.position = SCNVector3(x, y, z)
 
-        let moveToCamara = SCNAction.move(to: SCNVector3(0, 0, 0), duration: 10)
-        moveToCamara.speed = CGFloat(speed)
-        self.runAction(moveToCamara)
+        // mover hacia la cámara
+        let moveToCamera = SCNAction.move(to: SCNVector3(0, 0, 0), duration: Double(durationAnimation))
+        self.runAction(moveToCamera)
 
         self.addChildNode(node)
-        node.addChildNode(lifeBar)
+
+        // barra de vida
+        lifeBar.position = SCNVector3(0, 0.2, 0)
+        //node.addChildNode(lifeBar)
+        self.addChildNode(lifeBar)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
+}
 
-    // MARK: - Public functions
+// MARK: - Public functions
+extension Plane {
+
     func face(to objectOrientation: simd_float4x4) {
         var transform = objectOrientation
         transform.columns.3.x = self.position.x
@@ -67,7 +69,7 @@ final class Plane: SCNNode {
         return lifeBar.getHealth()
     }
 
-    func updateLifeBar(damage: Int) {
+    func setDamage(damage: Int) {
         lifeBar.update(damage: damage)
     }
 

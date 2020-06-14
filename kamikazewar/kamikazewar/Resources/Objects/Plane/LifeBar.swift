@@ -11,7 +11,7 @@ import ARKit
 final class LifeBar: SCNNode {
 
     // MARK: - Properties
-    var health: Int = 3
+    private var health: Int = Int.random(in: 3...8)
 
     // MARK: - Initialization
     init(width: Double = 3) {
@@ -20,35 +20,35 @@ final class LifeBar: SCNNode {
         //! ver si me hace falta o no
         self.name = "lifeBar"
 
-        setGeometryAndMaterialNode(width: width)
-
-        // posición
-        self.position = SCNVector3(0, 0, 0)
+        setGeometryAndMaterialNode()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
 
-    // MARK: - Private functions
-    private func setGeometryAndMaterialNode(width: Double) {
-        let geometry = SCNPlane(width: CGFloat(width), height: 0.02)
-        let material = SCNMaterial()
-        material.diffuse.contents = UIColor.green
-        geometry.materials = [material]
-        self.geometry = geometry
+// MARK: - Private functions
+extension LifeBar {
+
+    private func setGeometryAndMaterialNode() {
+        self.geometry = SCNPlane(width: CGFloat(health), height: 0.01)
+        self.geometry?.materials.first?.diffuse.contents = UIColor.green
     }
+
 }
 
 // MARK: - Public functions
 extension LifeBar {
 
     func update(damage: Int) {
-        self.health -= damage
-        if self.health <= 0 {
-            self.health = 0
+        health -= damage
+        print("Vida actual:\(health), daño producido:\(damage)")
+        if health <= 0 {
+            print("MUERE")
+            health = 0
         }
-        setGeometryAndMaterialNode(width: Double(self.health))
+        setGeometryAndMaterialNode()
     }
 
     func getHealth() -> Int {

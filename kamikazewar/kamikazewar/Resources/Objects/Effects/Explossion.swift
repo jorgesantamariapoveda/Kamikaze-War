@@ -10,9 +10,8 @@ import ARKit
 
 struct Explossion {
 
-    // MARK: - Public functions
     static func show(with node: SCNNode, in scene: SCNScene) {
-        guard let explossion = SCNParticleSystem(named: "Explossion", inDirectory: nil) else {
+        guard let explossion = SCNParticleSystem(named: "Resources/Objects/Effects/Explossion", inDirectory: nil) else {
             return
         }
 

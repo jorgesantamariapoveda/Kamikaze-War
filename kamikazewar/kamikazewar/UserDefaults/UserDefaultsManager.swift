@@ -10,6 +10,7 @@ import Foundation
 
 final class UserDefaultsManager {
 
+    // MARK: - Private functions
     private static func setHightScore(hightScore: Int) {
         UserDefaults.standard.set(hightScore, forKey: UserDefaults.Keys.hightScore)
     }
@@ -18,6 +19,7 @@ final class UserDefaultsManager {
         return UserDefaults.standard.integer(forKey: UserDefaults.Keys.hightScore)
     }
 
+    // MARK: - Public functions
     static func updateHightScore(score: Int) {
         let maxScore = max(score, getHightScore())
         UserDefaultsManager.setHightScore(hightScore: maxScore)

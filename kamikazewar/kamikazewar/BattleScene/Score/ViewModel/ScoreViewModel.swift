@@ -9,7 +9,6 @@
 import Foundation
 
 final class ScoreViewModel {
-
     // MARK: - Properties
     private let score: Score
 
@@ -17,8 +16,11 @@ final class ScoreViewModel {
     init() {
         self.score = Score()
     }
+}
 
-    // MARK: - Public functions
+// MARK: - Public functions
+extension ScoreViewModel {
+
     func updateScore() {
         self.score.updateScore()
     }
@@ -31,8 +33,7 @@ final class ScoreViewModel {
         return "Score: \(self.score.getScore())"
     }
 
-    func getPlaneSpeed() -> Double {
-        let score = self.score.getScore()
-        return min(3, Double(score) + 0.01)
+    func getDurationAnimation() -> Int {
+        return min(10, 15 - self.score.getScore())
     }
 }

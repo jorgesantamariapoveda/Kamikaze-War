@@ -11,52 +11,45 @@ import ARKit
 final class Bullet: SCNNode {
     
     // MARK: - Initialization
-    init(_ camera: ARCamera, color: UIColor, velocity: Float) {
+    init(_ camera: ARCamera, color: CGColor, velocity: Double) {
         super.init()
 
         // geometría y material
-        let geometry = SCNSphere(radius: 0.02)
-        let material = SCNMaterial()
-        material.diffuse.contents = color
-        geometry.materials = [material]
-
-        self.geometry = geometry
+        self.geometry = SCNSphere(radius: 0.02)
+        self.geometry?.materials.first?.diffuse.contents = color
 
         // añadir físicas
-        let shape = SCNPhysicsShape(geometry: geometry, options: nil)
-        self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: shape)
-        self.physicsBody?.isAffectedByGravity = false
-        // identificador de nuestro objeto para las colisiones
-        self.physicsBody?.categoryBitMask = Collisions.bullet.rawValue
-        // especificamos los objetos contra los que puede colisionar
-        self.physicsBody?.contactTestBitMask = Collisions.plane.rawValue
-        self.physicsBody?.contactTestBitMask = Collisions.ammoBox.rawValue
+        if let geometry = self.geometry {
+            let shape = SCNPhysicsShape(geometry: geometry, options: nil)
+            self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: shape)
+            self.physicsBody?.isAffectedByGravity = false
+            // identificador de nuestro objeto para las colisiones
+            self.physicsBody?.categoryBitMask = Collisions.bullet.rawValue
+            // especificamos los objetos contra los que puede colisionar
+            self.physicsBody?.contactTestBitMask = Collisions.plane.rawValue
+            self.physicsBody?.contactTestBitMask = Collisions.ammoBox.rawValue
+        }
 
         // aplicamos un impulso a la bala
         let matrix = SCNMatrix4(camera.transform)
         // vector director (que también lleva la velocidad)
-        let v = -velocity
+        let v = -Float(velocity)
         let direccion = SCNVector3(v * matrix.m31, v * matrix.m32, v * matrix.m33)
         // necesitamos un punto de origen
         let position = SCNVector3(matrix.m41, matrix.m42, matrix.m43)
         self.physicsBody?.applyForce(direccion, asImpulse: true)
-
-//        if let sourceAudio = SCNAudioSource(named: "Resources/nice.wav") {
-//            sourceAudio.volume = 5
-//            sourceAudio.loops = true
-//            sourceAudio.load()
-//            let player = SCNAudioPlayer(source: sourceAudio)
-//            self.addAudioPlayer(player)
-////            let playAudioSource = SCNAction.playAudio(sourceAudio, waitForCompletion: true)
-////            self.runAction(playAudioSource)
-//        }
-
-        // posición
         self.position = position
+
+        //! no he conseguido que funcionase
+//        if let sourceAudio = SCNAudioSource(fileNamed: "nice.wav") {
+//            sourceAudio.load()
+//            let playAudioSource = SCNAction.playAudio(sourceAudio, waitForCompletion: false)
+//            self.runAction(playAudioSource)
+//        }
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError()
+        fatalError("init(coder:) has not been implemented")
     }
 
 }

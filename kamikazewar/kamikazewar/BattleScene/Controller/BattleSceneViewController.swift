@@ -8,72 +8,30 @@
 
 import ARKit
 
-enum AmmunitionType {
-    case finite
-    case infinite
-
-    var color: UIColor {
-        switch self {
-            case .finite:
-                return .systemBlue
-            case .infinite:
-                return .systemPink
-        }
-    }
-
-    var velocity: Float {
-        switch self {
-            case .finite:
-                return 4
-            case .infinite:
-                return 8
-        }
-    }
-
-    var damage: Int {
-        switch self {
-            case .finite:
-                return 2
-            case .infinite:
-                return 1
-        }
-    }
-}
-
 final class BattleSceneViewController: UIViewController {
 
     // MARK: - Properties
     @IBOutlet weak var sceneView: ARSCNView!
-
     @IBOutlet weak var exitButton: UIButton!
-
     @IBOutlet weak var viewScore: UIView!
     @IBOutlet weak var scoreLabel: UILabel!
-
     @IBOutlet weak var infiniteAmmunitionExtView: UIView!
     @IBOutlet weak var infiniteAmmunitionIntView: UIView!
-
     @IBOutlet weak var finiteAmmunitionExtView: UIView!
     @IBOutlet weak var finiteAmmunitionIntView: UIView!
     @IBOutlet weak var finiteAmmunitionLabel: UILabel!
 
-    private let configuration = ARWorldTrackingConfiguration()
-
     private let scoreViewModel: ScoreViewModel!
-    private let ammoBox: AmmoBox!
-    private var plane: Plane!
-    private var planeSpeed = 1.0
-    private var lifeBarPlane = 10
+    private let ammunitionViewModel: AmmunitionViewModel!
 
-    private var finiteAmountAmmunition = 8
-    private var selectedAmmunition = AmmunitionType.infinite
+    private let configuration = ARWorldTrackingConfiguration()
 
     internal var delegate: MainMenuDelegate?
 
-    init(scoreViewModel: ScoreViewModel) {
-        self.scoreViewModel = scoreViewModel
-        ammoBox = AmmoBox()
-        plane = Plane(speed: planeSpeed)
+    // MARK: - Initialization
+    init() {
+        self.scoreViewModel = ScoreViewModel()
+        self.ammunitionViewModel = AmmunitionViewModel()
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -88,11 +46,18 @@ final class BattleSceneViewController: UIViewController {
 
         setupUI()
         configureSceneView()
-        setupData()
+        addPlaneToScene()
+        addAmmoBoxToScene()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        sceneView.session.run(configuration)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
+        super.viewWillDisappear(animated)
 
         sceneView.session.pause()
     }
@@ -101,10 +66,10 @@ final class BattleSceneViewController: UIViewController {
     @IBAction func exitButtonTapped(_ sender: UIButton) {
         sceneView.session.pause()
 
-        let alertController = UIAlertController(title: "¿Terminar partida?", message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Finish game?", message: nil, preferredStyle: .alert)
 
-        let alertActionSi = UIAlertAction(title: "SI", style: .default) { (action) in
-            self.updateHightScore()
+        let alertActionYes = UIAlertAction(title: "YES", style: .default) { (action) in
+            self.scoreViewModel.updateHightScore()
             self.delegate?.finishGame()
             self.dismiss(animated: true, completion: nil)
         }
@@ -113,117 +78,104 @@ final class BattleSceneViewController: UIViewController {
             self.sceneView.session.run(self.configuration)
         }
 
-        alertController.addAction(alertActionSi)
+        alertController.addAction(alertActionYes)
         alertController.addAction(alertActionNO)
 
         self.present(alertController, animated: true, completion: nil)
     }
 
     @IBAction func infiniteAmmunitionTapped(_ sender: UITapGestureRecognizer) {
-        selectedAmmunition = .infinite
-        updateSelectedAmmunitionUI()
+        setAmmunitionType(type: .infinite)
     }
 
     @IBAction func finiteAmmunitionTapped(_ sender: UITapGestureRecognizer) {
-        if finiteAmountAmmunition > 0 {
-            selectedAmmunition = .finite
-            updateSelectedAmmunitionUI()
-        }
+        setAmmunitionType(type: .finite)
     }
 
     @IBAction func sceneViewTapped(_ sender: UITapGestureRecognizer) {
-        guard let camera = self.sceneView.session.currentFrame?.camera else { return }
-
-        let bullet = Bullet(
-                    camera,
-                    color: selectedAmmunition.color,
-                    velocity: selectedAmmunition.velocity)
-        sceneView.scene.rootNode.addChildNode(bullet)
-
-        switch selectedAmmunition {
-            case .finite:
-                finiteAmountAmmunition -= 1
-                if finiteAmountAmmunition == 0 {
-                    selectedAmmunition = .infinite
-                }
-                updateFiniteAmmunitionUI()
-                updateSelectedAmmunitionUI()
-                break
-            case .infinite:
-                break
-        }
+        addBulletToScene()
+        ammunitionViewModel.updateNumBulletsAmmunition()
+        updateSelectedAmmunitionUI()
     }
 }
 
-// MARK: - Private functions
+// MARK: - Private functions UI
 extension BattleSceneViewController {
 
     private func setupUI() {
-        infiniteAmmunitionIntView.layer.cornerRadius = infiniteAmmunitionIntView.frame.width * 0.5
-        infiniteAmmunitionExtView.layer.cornerRadius = 8
-
-        infiniteAmmunitionExtView.layer.borderWidth = 2
-        infiniteAmmunitionExtView.layer.borderColor = UIColor.systemPink.cgColor
-
-        finiteAmmunitionIntView.layer.cornerRadius = infiniteAmmunitionIntView.frame.width * 0.5
-        finiteAmmunitionExtView.layer.cornerRadius = 8
-
+        // Ammunition
+        setupAmmunitionView(view: infiniteAmmunitionExtView)
+        setupAmmunitionView(view: finiteAmmunitionExtView)
         updateSelectedAmmunitionUI()
+        // Score
+        updateScoreUI()
+    }
 
-        finiteAmmunitionLabel.text = "20"
+    private func setupAmmunitionView(view: UIView) {
+        view.layer.cornerRadius = infiniteAmmunitionIntView.frame.width * 0.5
+        view.layer.cornerRadius = 8
+        view.layer.borderWidth = 2
     }
 
     private func updateSelectedAmmunitionUI() {
-        switch selectedAmmunition {
-            case .finite:
-                finiteAmmunitionExtView.layer.borderColor = UIColor.systemPink.cgColor
-                finiteAmmunitionExtView.layer.borderWidth = 2
-                infiniteAmmunitionExtView.layer.borderColor = UIColor.black.cgColor
-                infiniteAmmunitionExtView.layer.borderWidth = 0
-                break
-            case .infinite:
-                infiniteAmmunitionExtView.layer.borderColor = UIColor.systemPink.cgColor
-                infiniteAmmunitionExtView.layer.borderWidth = 2
-                finiteAmmunitionExtView.layer.borderColor = UIColor.black.cgColor
-                finiteAmmunitionExtView.layer.borderWidth = 0
-                break
-        }
-    }
-
-    private func configureSceneView() {
-        sceneView.session.run(configuration)
-        sceneView.session.delegate = self
-        sceneView.scene.physicsWorld.contactDelegate = self
-
-        sceneView.scene.rootNode.addChildNode(ammoBox)
-        sceneView.scene.rootNode.addChildNode(plane)
-    }
-
-    private func setupData() {
-        updateScoreUI()
-        updateFiniteAmmunitionUI()
-    }
-
-    private func updateScore() {
-        self.scoreViewModel.updateScore()
-        updateScoreUI()
+        finiteAmmunitionLabel.text = ammunitionViewModel.getNumBulletsAmmunition()
+        finiteAmmunitionExtView.layer.borderColor = AmmunitionType.finite.color.cgColor
+        infiniteAmmunitionExtView.layer.borderColor = AmmunitionType.finite.color.cgColor
     }
 
     private func updateScoreUI() {
+        self.scoreViewModel.updateScore()
         scoreLabel.text = scoreViewModel.getScoreToString()
     }
+}
 
-    private func updateHightScore() {
-        self.scoreViewModel.updateHightScore()
+// MARK: - Private functions ammunition
+extension BattleSceneViewController {
+
+    private func setAmmunitionType(type: AmmunitionType) {
+        ammunitionViewModel.setAmmunitionType(type: type)
+        updateSelectedAmmunitionUI()
     }
 
-    private func updateFiniteAmmunitionUI() {
-        finiteAmmunitionLabel.text = "\(finiteAmountAmmunition)"
+    private func resetAmmunitionType() {
+        ammunitionViewModel.resetNumBulletsAmmunition()
+        ammunitionViewModel.setAmmunitionType(type: .infinite)
+        updateSelectedAmmunitionUI()
+    }
+}
+
+// MARK: - Private functions sceneView
+extension BattleSceneViewController {
+
+    private func configureSceneView() {
+        sceneView.session.delegate = self
+        sceneView.scene.physicsWorld.contactDelegate = self
+    }
+}
+
+// MARK: - Private functions SCNNode
+extension BattleSceneViewController {
+
+    private func addAmmoBoxToScene() {
+        let ammoBox = AmmoBox()
+        sceneView.scene.rootNode.addChildNode(ammoBox)
     }
 
-    private func addNewPlane() {
-        let plane = Plane(speed: scoreViewModel.getPlaneSpeed())
+    private func addPlaneToScene() {
+        let plane = Plane(durationAnimation: scoreViewModel.getDurationAnimation())
         sceneView.scene.rootNode.addChildNode(plane)
+    }
+
+    private func addBulletToScene() {
+        guard let camera = self.sceneView.session.currentFrame?.camera else {
+            return
+        }
+
+        let bullet = Bullet(
+                    camera,
+                    color: ammunitionViewModel.getBulletColor(),
+                    velocity: ammunitionViewModel.getBulletVelocity())
+        sceneView.scene.rootNode.addChildNode(bullet)
     }
 }
 
@@ -231,9 +183,34 @@ extension BattleSceneViewController {
 extension BattleSceneViewController: ARSessionDelegate {
 
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
+        guard
+            let planeNode = sceneView.scene.rootNode.childNode(withName: "plane", recursively: true),
+            let plane = planeNode as? Plane else {
+            return
+        }
+
         // con esto está hecho en bilboard
         if let cameraOrientation = session.currentFrame?.camera.transform {
             plane.face(to: cameraOrientation)
+        }
+
+        print(plane.position.z)
+
+        if plane.position.z == 0 {
+            sceneView.session.pause()
+
+            let alertController = UIAlertController(title: "👾GAME OVER👾", message: nil, preferredStyle: .alert)
+
+            let alertAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                self.delegate?.finishGame()
+                self.dismiss(animated: true, completion: nil)
+            }
+
+            alertController.addAction(alertAction)
+
+            if self.presentedViewController == nil {
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
     }
 
@@ -251,20 +228,20 @@ extension BattleSceneViewController: SCNPhysicsContactDelegate {
             if contact.nodeA is Plane { node = contact.nodeA }
             if contact.nodeB is Plane { node = contact.nodeB }
 
-            // Explossion
             Explossion.show(with: node, in: sceneView.scene)
 
             guard let plane = node as? Plane else {
                 return
             }
 
-            plane.updateLifeBar(damage: selectedAmmunition.damage)
+            plane.setDamage(damage: ammunitionViewModel.getBulletDamage())
+
             if plane.getHealth() == 0 {
                 plane.removeFromParentNode()
+                addPlaneToScene()
+
                 DispatchQueue.main.async { [weak self] in
-                    self?.updateScore()
                     self?.updateScoreUI()
-                    self?.addNewPlane()
                 }
             }
         } else if contact.nodeA.physicsBody?.categoryBitMask == Collisions.ammoBox.rawValue ||
@@ -274,13 +251,12 @@ extension BattleSceneViewController: SCNPhysicsContactDelegate {
             if contact.nodeA is AmmoBox { node = contact.nodeA }
             if contact.nodeB is AmmoBox { node = contact.nodeB }
 
-            // Explossion
             Explossion.show(with: node, in: sceneView.scene)
 
-            finiteAmountAmmunition = 8
+            resetAmmunitionType()
 
             DispatchQueue.main.async { [weak self] in
-                self?.updateFiniteAmmunitionUI()
+                self?.updateSelectedAmmunitionUI()
             }
         }
     }

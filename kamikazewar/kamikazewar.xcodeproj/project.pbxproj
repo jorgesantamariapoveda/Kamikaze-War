@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF4419442496350700B0657F /* AmmunitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4419432496350700B0657F /* AmmunitionType.swift */; };
+		CF44194824963C4E00B0657F /* Ammunition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF44194724963C4E00B0657F /* Ammunition.swift */; };
+		CF44194B24963D4500B0657F /* AmmunitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF44194A24963D4500B0657F /* AmmunitionViewModel.swift */; };
 		CF5D5B032493D76A00844178 /* AmmoBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5D5B022493D76900844178 /* AmmoBox.swift */; };
 		CF5D5B062493FC0800844178 /* LifeBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5D5B052493FC0800844178 /* LifeBar.swift */; };
+		CF84CF80249625FD007CA78C /* AmmoBoxFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF84CF7F249625FD007CA78C /* AmmoBoxFill.swift */; };
 		CF99D6172495380E00090B0B /* MainMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99D6162495380E00090B0B /* MainMenuDelegate.swift */; };
 		CFDA5CDC248CC90000CF6F6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA5CDB248CC90000CF6F6A /* AppDelegate.swift */; };
 		CFDA5CDE248CC90000CF6F6A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA5CDD248CC90000CF6F6A /* SceneDelegate.swift */; };
@@ -31,8 +35,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF4419432496350700B0657F /* AmmunitionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmmunitionType.swift; sourceTree = "<group>"; };
+		CF44194724963C4E00B0657F /* Ammunition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ammunition.swift; sourceTree = "<group>"; };
+		CF44194A24963D4500B0657F /* AmmunitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmmunitionViewModel.swift; sourceTree = "<group>"; };
 		CF5D5B022493D76900844178 /* AmmoBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmmoBox.swift; sourceTree = "<group>"; };
 		CF5D5B052493FC0800844178 /* LifeBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeBar.swift; sourceTree = "<group>"; };
+		CF84CF7F249625FD007CA78C /* AmmoBoxFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmmoBoxFill.swift; sourceTree = "<group>"; };
 		CF99D6162495380E00090B0B /* MainMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuDelegate.swift; sourceTree = "<group>"; };
 		CF99D61A24953F3E00090B0B /* nice.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = nice.wav; sourceTree = "<group>"; };
 		CFDA5CD8248CC90000CF6F6A /* KamikazeWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KamikazeWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,20 +78,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF441942249634F500B0657F /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				CF4419432496350700B0657F /* AmmunitionType.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		CF44194524963C1300B0657F /* Ammunition */ = {
+			isa = PBXGroup;
+			children = (
+				CF441942249634F500B0657F /* Enum */,
+				CF44194624963C3B00B0657F /* Model */,
+				CF44194924963D2600B0657F /* ViewModel */,
+			);
+			path = Ammunition;
+			sourceTree = "<group>";
+		};
+		CF44194624963C3B00B0657F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF44194724963C4E00B0657F /* Ammunition.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CF44194924963D2600B0657F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF44194A24963D4500B0657F /* AmmunitionViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CF5D5B012493D5E700844178 /* AmmoBox */ = {
 			isa = PBXGroup;
 			children = (
 				CF5D5B022493D76900844178 /* AmmoBox.swift */,
+				CF84CF7F249625FD007CA78C /* AmmoBoxFill.swift */,
 			);
 			path = AmmoBox;
-			sourceTree = "<group>";
-		};
-		CF5D5B042493FBEB00844178 /* LifeBar */ = {
-			isa = PBXGroup;
-			children = (
-				CF5D5B052493FC0800844178 /* LifeBar.swift */,
-			);
-			path = LifeBar;
 			sourceTree = "<group>";
 		};
 		CF99D615249537E900090B0B /* Protocol */ = {
@@ -155,6 +190,7 @@
 		CFDA5CF6248CE20800CF6F6A /* BattleScene */ = {
 			isa = PBXGroup;
 			children = (
+				CF44194524963C1300B0657F /* Ammunition */,
 				CFDA5D08248D10C200CF6F6A /* Score */,
 				CFDA5D07248CF44E00CF6F6A /* Controller */,
 				CFDA5D06248CF44700CF6F6A /* View */,
@@ -227,7 +263,6 @@
 				CF5D5B012493D5E700844178 /* AmmoBox */,
 				CFE52ECF248D5D100012DE0F /* Effects */,
 				CFE52ECE248D5CF00012DE0F /* Bullet */,
-				CF5D5B042493FBEB00844178 /* LifeBar */,
 				CFE52EC8248D5BEE0012DE0F /* Plane */,
 				CFE52EC6248D5BD40012DE0F /* Collisions.swift */,
 			);
@@ -237,6 +272,7 @@
 		CFE52EC8248D5BEE0012DE0F /* Plane */ = {
 			isa = PBXGroup;
 			children = (
+				CF5D5B052493FC0800844178 /* LifeBar.swift */,
 				CFE52EDD248D5DAB0012DE0F /* Plane.swift */,
 				CFE52ECA248D5CDB0012DE0F /* ship.scn */,
 				CFE52ECB248D5CDB0012DE0F /* texture.png */,
@@ -336,12 +372,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF44194824963C4E00B0657F /* Ammunition.swift in Sources */,
 				CFDA5D0E248D15AB00CF6F6A /* Score.swift in Sources */,
 				CFDA5CF2248CCC0C00CF6F6A /* MainMenuViewController.swift in Sources */,
 				CFE52EDE248D5DAB0012DE0F /* Plane.swift in Sources */,
 				CFE52EE3248D5EBB0012DE0F /* Explossion.swift in Sources */,
 				CF5D5B032493D76A00844178 /* AmmoBox.swift in Sources */,
 				CF5D5B062493FC0800844178 /* LifeBar.swift in Sources */,
+				CF84CF80249625FD007CA78C /* AmmoBoxFill.swift in Sources */,
 				CFDA5CDC248CC90000CF6F6A /* AppDelegate.swift in Sources */,
 				CFDA5CF9248CE28400CF6F6A /* UserDefaultsManager.swift in Sources */,
 				CFDA5D04248CF44000CF6F6A /* BattleSceneViewController.swift in Sources */,
@@ -350,7 +388,9 @@
 				CFE52EC7248D5BD40012DE0F /* Collisions.swift in Sources */,
 				CF99D6172495380E00090B0B /* MainMenuDelegate.swift in Sources */,
 				CFDA5D10248D167200CF6F6A /* ScoreViewModel.swift in Sources */,
+				CF44194B24963D4500B0657F /* AmmunitionViewModel.swift in Sources */,
 				CFE52EE0248D5DC50012DE0F /* Bullet.swift in Sources */,
+				CF4419442496350700B0657F /* AmmunitionType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
