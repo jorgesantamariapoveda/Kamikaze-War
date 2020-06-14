@@ -13,3 +13,10 @@ Realizar un juego en el que hay que disparar y derribar un avión antes de que l
 - ARKit.
 - MVVM como arquitectura de desarrollo.
 - UserDefaults.
+
+## Algunas mejoras sobre los objetivos solicitados
+
+- El color de las balas y su velocidad dependen del tipo de munición.
+- Se ha incorporado sonido para cada tipo de munición.
+- La velocidad del avión se va incrementado progresivamente según aumentan el número de aviones destruidos (con un máximo para mantener la jugabilidad).
+- Se ha creado una estructura Settings donde tener centralizado aquellos valores que pueden modificar el juego. Por un lado está centralizado y por el otro da pie a poder crear una pantalla de configuración para que el usuario la establezca a medida.
