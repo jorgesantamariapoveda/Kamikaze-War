@@ -6,8 +6,11 @@ Realizar un juego en el que hay que disparar y derribar un avión antes de que l
 
 - Xcode
 - Swift
+
   -- ARKit
+
   -- MVVM
+
   -- UserDefaults
 
 ## Especificaciones
