@@ -1,17 +1,12 @@
-# 05 Superpoderes iOS
+## Objetivos
+Aplicar el uso de los frameworks **ARKit** y **SceneKit**.
 
-Realizar un juego en el que hay que disparar y derribar un avión antes de que llegue a su cámara partiendo de una posición aleatoria.
+Para ello se ha realizado un pequeño juego que consiste en disparar a una serie de aviones antes de que lleguen a su cámara partiendo de una posición aleatoria.
 
-## Tecnologías
-
-- Xcode
-- Swift
-
-  -- ARKit
-
-  -- MVVM
-
-  -- UserDefaults
+- ARKit
+- Scenekit
+- MVVM
+- UserDefaults
 
 ## Especificaciones
 
